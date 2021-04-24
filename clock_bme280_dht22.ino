@@ -15,7 +15,7 @@ RTC_DS3231 rtc;
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
-#define DHTPIN 2     // Digital pin connected to the DHT sensor DHTPIN 2 но Подключать на пин D4
+#define DHTPIN D4     // Digital pin connected to the DHT sensor
 #define DHTTYPE DHT22     // DHT 22 (AM2302)
 DHT dht(DHTPIN, DHTTYPE);
 ////BME280
