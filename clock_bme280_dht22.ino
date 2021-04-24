@@ -9,7 +9,7 @@ WiFiUDP udp;
 #include <EasyNTPClient.h>
 #include <RTClib.h>
 RTC_DS3231 rtc;  
-#include <FastLED.h>   // библиотека светодиодов из менеджера библиотек 3.2.6
+#include <FastLED.h>   //  3.2.6
 #include <Wire.h>
 /////// DHT 22 
 #include <Adafruit_Sensor.h>
@@ -21,8 +21,7 @@ DHT dht(DHTPIN, DHTTYPE);
 ////BME280
 #include <SparkFunBME280.h>
 BME280 bme280;
-/////////////////////НАСТРОЙКИ И СХЕМА//////////////////
-// вписываем здесь SSID и пароль для вашей WiFi-сети:
+/////////////////////SETTINGS//////////////////
 const char* host = "esp8266-webupdate";
 const char *ssid = "ssid";             // your network SSID (name)
 const char *password = "password";         // your network password
@@ -43,18 +42,18 @@ const int idxdht = 29; /* must be the same as virual sensor idx in Domotocz */
 const int idxbme = 30; /* must be the same as virual sensor idx in Domotocz */
 char mqttbuffer_dht[60];
 char mqttbuffer_bme[60];
-float tempS,humS;                  // переменные dht22 для мониторинга
+float tempS,humS;                 // переменные dht22 для мониторинга
 float tempH,humH,presH;           // переменные bme280 для мониторинга
 int delay_monotoring = 60;        // как часто отправлять значения датчиков
-unsigned long timing;                  // переменная для мониторинга
-static bool Monitoring = true; // включаем мониторинг, иначе false
+unsigned long timing;             // переменная для мониторинга
+static bool Monitoring = true;    // включаем мониторинг, иначе false
 
 /////////////////////////
-int UpdatePeriod = 12;        // период в часах, как часто обновлять время из интернета, лучше не пишите маленькие числа:)
-int Period = UpdatePeriod * 3600; //вычисление секунд
-int brg = 5000;              // как часто проверять изменение по датчику освещенности в мс, 10000 соответствуют 10сек
-byte cnctd = 20;              // кол-во попыток подключиться к роутеру, 2 запроса в сек
-byte type_brg = 0;            // выбрать тип датчика, 0 - аналог, 1 - цифровой
+int UpdatePeriod = 12;             // период в часах, как часто обновлять время из интернета, лучше не пишите маленькие числа:)
+int Period = UpdatePeriod * 3600;  //вычисление секунд
+int brg = 5000;                    // как часто проверять изменение по датчику освещенности в мс, 10000 соответствуют 10сек
+byte cnctd = 20;                   // кол-во попыток подключиться к роутеру, 2 запроса в сек
+byte type_brg = 0;                 // выбрать тип датчика, 0 - аналог, 1 - цифровой
 /////////////////////////////////////////////
 #define LEDS_IN_SEGMENT 2     // задаём сколько у нас светодиодов в сегменте
 #define DOTS_NUM 2            // задаём сколько у нас разделительных точек
